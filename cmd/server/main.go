@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/marcioc0sta/finch/configs"
+	"github.com/marcioc0sta/finch/internal/entities"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
@@ -22,7 +23,7 @@ func main() {
 		panic("failed to connect database")
 	}
 
-	db.AutoMigrate()
+	db.AutoMigrate(&entities.Employee{})
 
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
